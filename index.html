@@ -3,167 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dara Toledo — Escritora, Artesã & Dev</title>
+  <title>Dara Toledo — Escritora & Dev Front-end</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #fdf6f0;
-      --surface: #fff8f5;
-      --surface2: #f5edf7;
-      --border: #e8d5e0;
-      --accent: #9b87f5;
-      --accent2: #f4a7c3;
-      --green: #52e0a0;
-      --text: #2d1f2d;
-      --muted: #9a6f82;
-      --r: 14px;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 99;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5vw; height: 62px;
-      background: rgba(253,246,240,.92); backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--accent); letter-spacing: -.01em; text-decoration: none; }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-    .nav-links a { font-size: .82rem; color: var(--muted); text-decoration: none; transition: color .18s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta { padding: .45rem 1.1rem; background: var(--accent); color: #fff; border-radius: 8px; font-size: .8rem; font-weight: 600; text-decoration: none; transition: opacity .18s; }
-    .nav-cta:hover { opacity: .85; }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh; display: flex; flex-direction: column;
-      justify-content: center; padding: 80px 5vw 3rem; max-width: 1000px;
-    }
-    .hero-pill {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: rgba(155,135,245,.12); color: var(--accent);
-      border: 1px solid rgba(155,135,245,.28);
-      padding: .35rem 1rem; border-radius: 99px;
-      font-size: .75rem; font-weight: 600; letter-spacing: .04em;
-      margin-bottom: 2rem; width: fit-content;
-    }
-    .dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; display: inline-block; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.6rem, 6.5vw, 5rem);
-      line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.5rem;
-    }
-    .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 2.5rem; }
-    .hero-btns { display: flex; gap: .85rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
-    .btn { padding: .72rem 1.7rem; border-radius: 10px; font-size: .87rem; font-weight: 600; text-decoration: none; transition: all .2s; border: none; cursor: pointer; display: inline-block; }
-    .btn-p { background: var(--accent); color: #fff; }
-    .btn-p:hover { background: #8672e0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(155,135,245,.3); }
-    .btn-o { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-o:hover { border-color: var(--accent); color: var(--accent); }
-    .stacks { display: flex; flex-wrap: wrap; gap: .55rem; }
-    .stack { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); padding: .3rem .85rem; border-radius: 99px; font-size: .75rem; font-weight: 500; }
-
-    /* SEÇÕES */
-    .sec { max-width: 1020px; margin: 0 auto; padding: 5.5rem 5vw; }
-    .sec-label { font-size: .72rem; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: .6rem; }
-    .sec-title { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -.02em; margin-bottom: 2.8rem; }
-
-    /* PILARES */
-    .pilares-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
-    .pilar {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 1.8rem;
-      transition: border-color .2s, transform .2s;
-      position: relative; overflow: hidden;
-    }
-    .pilar::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      opacity: 0; transition: opacity .2s;
-    }
-    .pilar:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .pilar:hover::before { opacity: 1; }
-    .pilar-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .pilar-title { font-weight: 700; font-size: 1rem; margin-bottom: .5rem; }
-    .pilar-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; }
-    .pilar-link { display: inline-block; margin-top: .9rem; font-size: .78rem; color: var(--accent); text-decoration: none; font-weight: 600; }
-    .pilar-link:hover { text-decoration: underline; }
-
-    /* PROJETOS */
-    .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.4rem; }
-    .card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-    }
-    .card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 12px 40px rgba(155,135,245,.12); }
-    .card-thumb {
-      height: 170px; display: flex; align-items: center; justify-content: center;
-      font-size: 3.5rem; position: relative; overflow: hidden;
-    }
-    .card-thumb::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, var(--surface));
-    }
-    .card-body { padding: 1.3rem 1.3rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: .65rem; }
-    .card-title { font-size: .93rem; font-weight: 700; line-height: 1.4; }
-    .card-desc { font-size: .8rem; color: var(--muted); line-height: 1.6; flex: 1; }
-    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .4rem; }
-    .tag { padding: .2rem .7rem; border-radius: 99px; font-size: .7rem; font-weight: 600; background: rgba(155,135,245,.1); color: var(--accent); border: 1px solid rgba(155,135,245,.22); }
-    .tag-p { background: rgba(244,167,195,.1); color: #c0527a; border-color: rgba(244,167,195,.35); }
-    .tag-g { background: rgba(82,224,160,.1); color: #2ecc87; border-color: rgba(82,224,160,.22); }
-    .card-link { display: inline-flex; align-items: center; gap: .4rem; font-size: .78rem; color: var(--accent); text-decoration: none; font-weight: 600; margin-top: .6rem; }
-    .card-link:hover { text-decoration: underline; }
-
-    /* SERVIÇOS */
-    .sec-alt { background: var(--surface2); }
-    .sec-alt .sec-inner { max-width: 1020px; margin: 0 auto; padding: 5.5rem 5vw; }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
-    .srv { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 1.6rem; transition: border-color .2s; }
-    .srv:hover { border-color: var(--accent2); }
-    .srv-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-    .srv-title { font-weight: 700; font-size: .92rem; margin-bottom: .5rem; }
-    .srv-desc { font-size: .78rem; color: var(--muted); line-height: 1.6; }
-
-    /* SOBRE */
-    .about-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: start; }
-    .about-text p { color: var(--muted); font-size: .92rem; line-height: 1.75; margin-bottom: .9rem; }
-    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 1.4rem; display: flex; flex-direction: column; align-items: center; gap: .3rem; }
-    .stat-n { font-family: 'Syne', sans-serif; font-size: 2.2rem; color: var(--accent); line-height: 1; }
-    .stat-l { font-size: .72rem; color: var(--muted); text-align: center; }
-
-    /* CONTATO */
-    .contact-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 3.5rem 2rem; text-align: center; }
-    .contact-box p { color: var(--muted); max-width: 440px; margin: 0 auto 2.2rem; font-size: .92rem; line-height: 1.7; }
-    .contact-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 2rem 5vw; text-align: center; color: var(--muted); font-size: .78rem; }
-    footer span { color: var(--accent); }
-
-    /* MOBILE */
-    @media (max-width: 640px) {
-      .about-wrap { grid-template-columns: 1fr; gap: 2rem; }
-      .nav-links, .nav-cta { display: none; }
-    }
+    :root{--bg:#fdf6f0;--surface:#fff8f5;--surface2:#f5edf7;--border:#e8d5e0;--accent:#9b87f5;--accent2:#f4a7c3;--green:#52e0a0;--text:#2d1f2d;--muted:#9a6f82;--r:14px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:"Lato",sans-serif;font-weight:300;background:var(--bg);color:var(--text)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:62px;background:rgba(253,246,240,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .logo{font-family:"Cormorant Garamond",serif;font-size:1.25rem;font-weight:600;color:var(--accent);text-decoration:none;font-style:italic}
+    .nav-links{display:flex;gap:2.2rem;list-style:none}
+    .nav-links a{font-size:.78rem;font-weight:400;letter-spacing:.08em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .18s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-cta{padding:.45rem 1.2rem;background:var(--accent);color:#fff;border-radius:8px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
+    .nav-cta:hover{opacity:.85}
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 5vw 3rem;max-width:1000px}
+    .hero-pill{display:inline-flex;align-items:center;gap:.5rem;background:rgba(155,135,245,.12);color:var(--accent);border:1px solid rgba(155,135,245,.28);padding:.35rem 1rem;border-radius:99px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;width:fit-content}
+    .dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 2s infinite;display:inline-block}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(3rem,7vw,5.8rem);font-weight:600;line-height:1.08;letter-spacing:-.01em;margin-bottom:1.5rem}
+    .hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+    .hero-sub{font-size:1rem;font-weight:300;color:var(--muted);max-width:520px;line-height:1.8;margin-bottom:2.5rem}
+    .hero-btns{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:3.5rem}
+    .btn{padding:.75rem 1.8rem;border-radius:10px;font-family:"Lato",sans-serif;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s;border:none;cursor:pointer;display:inline-block}
+    .btn-p{background:var(--accent);color:#fff}
+    .btn-p:hover{background:#8672e0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(155,135,245,.3)}
+    .btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}
+    .btn-o:hover{border-color:var(--accent);color:var(--accent)}
+    .stacks{display:flex;flex-wrap:wrap;gap:.55rem}
+    .stack{background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:.28rem .9rem;border-radius:99px;font-size:.72rem;letter-spacing:.04em}
+    .sec{max-width:1020px;margin:0 auto;padding:5.5rem 5vw}
+    .sec-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);font-weight:700;margin-bottom:.7rem}
+    .sec-title{font-family:"Cormorant Garamond",serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:600;letter-spacing:-.01em;margin-bottom:2.8rem;line-height:1.1}
+    .pilares-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+    .pilar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+    .pilar::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .2s}
+    .pilar:hover{border-color:var(--accent);transform:translateY(-4px)}
+    .pilar:hover::before{opacity:1}
+    .pilar-icon{font-size:1.8rem;margin-bottom:1rem}
+    .pilar-title{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:1.2rem;margin-bottom:.5rem}
+    .pilar-desc{font-size:.85rem;font-weight:300;color:var(--muted);line-height:1.75}
+    .pilar-link{display:inline-block;margin-top:.9rem;font-size:.73rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+    .pilar-link:hover{text-decoration:underline}
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.4rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 12px 40px rgba(155,135,245,.12)}
+    .card-thumb{height:170px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+    .card-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--surface))}
+    .card-body{padding:1.3rem 1.3rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:.6rem}
+    .card-title{font-family:"Cormorant Garamond",serif;font-size:1.15rem;font-weight:700;line-height:1.3}
+    .card-desc{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.7;flex:1}
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto;padding-top:.4rem}
+    .tag{padding:.2rem .7rem;border-radius:99px;font-size:.68rem;font-weight:700;letter-spacing:.04em;background:rgba(155,135,245,.1);color:var(--accent);border:1px solid rgba(155,135,245,.22)}
+    .tag-p{background:rgba(244,167,195,.1);color:#c0527a;border-color:rgba(244,167,195,.35)}
+    .tag-g{background:rgba(82,224,160,.1);color:#2ecc87;border-color:rgba(82,224,160,.22)}
+    .card-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.73rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);text-decoration:none;margin-top:.6rem}
+    .card-link:hover{text-decoration:underline}
+    .sec-alt{background:var(--surface2)}
+    .sec-inner{max-width:1020px;margin:0 auto;padding:5.5rem 5vw}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem}
+    .srv{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;transition:border-color .2s}
+    .srv:hover{border-color:var(--accent2)}
+    .srv-icon{font-size:1.6rem;margin-bottom:1rem}
+    .srv-title{font-family:"Cormorant Garamond",serif;font-weight:700;font-size:1.15rem;margin-bottom:.5rem}
+    .srv-desc{font-size:.82rem;font-weight:300;color:var(--muted);line-height:1.65}
+    .about-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start}
+    .about-text p{color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.85;margin-bottom:.9rem}
+    .stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+    .stat-n{font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:600;color:var(--accent);line-height:1;font-style:italic}
+    .stat-l{font-size:.68rem;font-weight:400;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);text-align:center}
+    .contact-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:3.5rem 2rem;text-align:center}
+    .contact-box p{color:var(--muted);max-width:440px;margin:0 auto 2.2rem;font-size:.9rem;font-weight:300;line-height:1.8}
+    .contact-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+    footer{border-top:1px solid var(--border);padding:2rem 5vw;text-align:center;color:var(--muted);font-size:.78rem;font-weight:300;letter-spacing:.04em}
+    footer span{color:var(--accent);font-style:italic;font-family:"Cormorant Garamond",serif;font-size:.95rem}
+    @media(max-width:640px){.about-wrap{grid-template-columns:1fr;gap:2rem}.nav-links,.nav-cta{display:none}}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <a href="#" class="logo">dara.toledo</a>
+  <a href="#" class="logo">dara toledo</a>
   <ul class="nav-links">
     <li><a href="#universo">Universo</a></li>
     <li><a href="#projetos">Projetos</a></li>
@@ -173,22 +96,10 @@
   <a href="#contato" class="nav-cta">Falar comigo</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-pill">
-    <span class="dot"></span>
-    ✍️ Escritora · 🧶 Artesã · 💻 Dev
-  </div>
-  <h1>
-    Escrevo. Crio.<br>
-    Com as mãos<br>
-    e com <em>código.</em>
-  </h1>
-  <p class="hero-sub">
-    Sou Dara Toledo — escritora, artesã de crochê e desenvolvedora front-end.
-    Faço landing pages que contam histórias, livros que criam conexões
-    e peças feitas à mão com muito carinho.
-  </p>
+  <div class="hero-pill"><span class="dot"></span> Disponível para novos projetos</div>
+  <h1>Escrevo. Crio.<br>Com as mãos<br>e com <em>código.</em></h1>
+  <p class="hero-sub">Sou Dara Toledo — escritora e desenvolvedora front-end. Faço landing pages que contam histórias, livros que criam conexões e sites feitos com muito carinho.</p>
   <div class="hero-btns">
     <a href="#projetos" class="btn btn-p">Ver projetos</a>
     <a href="#contato" class="btn btn-o">Falar comigo</a>
@@ -198,167 +109,100 @@
     <span class="stack">CSS3</span>
     <span class="stack">Design Responsivo</span>
     <span class="stack">Escrita Criativa</span>
-    <span class="stack">Crochê</span>
     <span class="stack">UX Writing</span>
+    <span class="stack">GitHub Pages</span>
   </div>
 </div>
 
-<!-- UNIVERSO CRIATIVO -->
 <section class="sec" id="universo">
   <div class="sec-label">Quem sou</div>
   <div class="sec-title">Meu universo criativo</div>
   <div class="pilares-grid">
-
     <div class="pilar">
       <div class="pilar-icon">📖</div>
       <div class="pilar-title">Escritora</div>
-      <div class="pilar-desc">
-        Autora do livro <em>Antes do Sim</em> — uma história sobre escolhas,
-        conexão e o que a gente sente antes de dizer sim para o amor.
-        Disponível em ebook na Amazon e impresso no Clube de Autores.
-      </div>
+      <div class="pilar-desc">Autora do livro <em>Antes do Sim</em> — uma história sobre escolhas, conexão e o que a gente sente antes de dizer sim para o amor. Disponível na Amazon e Clube de Autores.</div>
       <a href="https://www.amazon.com.br/Antes-do-Sim-Dara-Ellen-ebook/dp/B0GT7LNX6J/" target="_blank" class="pilar-link">Comprar na Amazon →</a>
     </div>
-
     <div class="pilar">
-      <div class="pilar-icon">🧶</div>
-      <div class="pilar-title">Artesã de Crochê</div>
-      <div class="pilar-desc">
-        Cada ponto é feito com intenção. Crio peças únicas com fio e agulha —
-        presentes, decoração e muito carinho em cada trabalho.
-        Encontre minha loja no Enjoei.
-      </div>
+      <div class="pilar-icon">🌸</div>
+      <div class="pilar-title">Artesã</div>
+      <div class="pilar-desc">Crio peças artesanais feitas à mão com muito carinho. Cada item é único e cheio de intenção. Encontre minha loja no Enjoei.</div>
       <a href="https://www.enjoei.com.br/@dara-5079d0" target="_blank" class="pilar-link">Ver loja no Enjoei →</a>
     </div>
-
     <div class="pilar">
       <div class="pilar-icon">💻</div>
       <div class="pilar-title">Desenvolvedora Front-end</div>
-      <div class="pilar-desc">
-        Crio landing pages e sites que unem estética, performance e narrativa.
-        Porque um bom site também conta uma história — e essa história
-        precisa ser bonita de ver e fácil de sentir.
-      </div>
+      <div class="pilar-desc">Crio landing pages e sites que unem estética, performance e narrativa. Porque um bom site também conta uma história.</div>
       <a href="#projetos" class="pilar-link">Ver projetos →</a>
     </div>
-
   </div>
 </section>
 
-<!-- PROJETOS -->
 <section class="sec" id="projetos">
   <div class="sec-label">Projetos em destaque</div>
   <div class="sec-title">O que já entreguei</div>
   <div class="proj-grid">
-
     <div class="card">
-      <div class="card-thumb" style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);">🔧</div>
+      <div class="card-thumb" style="background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)">🔧</div>
       <div class="card-body">
         <div class="card-title">Renutech</div>
         <div class="card-desc">Landing page institucional com identidade visual forte, focada em serviços de tecnologia e renovação. Design limpo, responsivo e direto ao ponto.</div>
-        <div class="tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag tag-g">Vercel</span>
-        </div>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag tag-g">Vercel</span></div>
         <a href="https://renutech.vercel.app/" target="_blank" class="card-link">Ver projeto →</a>
       </div>
     </div>
-
     <div class="card">
-      <div class="card-thumb" style="background: linear-gradient(135deg, #6a1c42 0%, #b5547a 100%);">📖</div>
-      <div class="card-body">
-        <div class="card-title">Antes do Sim — Livro</div>
-        <div class="card-desc">Meu primeiro livro publicado. Uma história sobre amor, escolha e os sentimentos que ficam entre o silêncio e o sim. Disponível na Amazon e Clube de Autores.</div>
-        <div class="tags">
-          <span class="tag tag-p">Ficção</span>
-          <span class="tag tag-p">Romance</span>
-        </div>
-        <a href="https://www.amazon.com.br/Antes-do-Sim-Dara-Ellen-ebook/dp/B0GT7LNX6J/" target="_blank" class="card-link">Comprar na Amazon →</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-thumb" style="background: linear-gradient(135deg, #1c0930 0%, #5c1a7a 100%);">🔮</div>
+      <div class="card-thumb" style="background:linear-gradient(135deg,#1c0930 0%,#5c1a7a 100%)">🔮</div>
       <div class="card-body">
         <div class="card-title">Rompendo o Silêncio</div>
         <div class="card-desc">Projeto digital com impacto social — conteúdo educativo e acessível desenvolvido com HTML e CSS para alcançar quem precisa de informação clara.</div>
-        <div class="tags">
-          <span class="tag">HTML</span>
-          <span class="tag">CSS</span>
-          <span class="tag tag-p">Impacto Social</span>
-        </div>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag tag-p">Impacto Social</span></div>
       </div>
     </div>
-
     <div class="card">
-      <div class="card-thumb" style="background: linear-gradient(135deg, #f8c8d4 0%, #f4a7c3 100%);">🧶</div>
+      <div class="card-thumb" style="background:linear-gradient(135deg,#6a1c42 0%,#b5547a 100%)">🖥️</div>
       <div class="card-body">
-        <div class="card-title">Loja de Artesanato</div>
-        <div class="card-desc">Peças de crochê feitas à mão com carinho — presentes, decoração e itens únicos. Cada peça tem uma história e foi criada com fio, agulha e muita intenção.</div>
-        <div class="tags">
-          <span class="tag tag-p">Crochê</span>
-          <span class="tag tag-p">Artesanato</span>
-          <span class="tag">Enjoei</span>
-        </div>
-        <a href="https://www.enjoei.com.br/@dara-5079d0" target="_blank" class="card-link">Ver loja →</a>
+        <div class="card-title">Este Portfólio</div>
+        <div class="card-desc">Portfólio pessoal com design próprio, paleta creme-roxa, animações suaves e seções para projetos, serviços e contato. Hospedado no GitHub Pages.</div>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag tag-g">GitHub Pages</span></div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- SERVIÇOS -->
 <div class="sec-alt" id="servicos">
   <div class="sec-inner">
     <div class="sec-label">O que ofereço</div>
     <div class="sec-title">Como posso te ajudar</div>
     <div class="services-grid">
-      <div class="srv">
-        <div class="srv-icon">📖</div>
-        <div class="srv-title">Escrita Criativa</div>
-        <div class="srv-desc">Livros, contos, narrativas e conteúdo literário com voz autêntica e intenção clara.</div>
-      </div>
-      <div class="srv">
-        <div class="srv-icon">💻</div>
-        <div class="srv-title">Landing Pages</div>
-        <div class="srv-desc">Sites e páginas de venda em HTML/CSS com foco em estética, narrativa e conversão.</div>
-      </div>
-      <div class="srv">
-        <div class="srv-icon">✍️</div>
-        <div class="srv-title">UX Writing</div>
-        <div class="srv-desc">Textos para interfaces, botões e comunicação digital que guiam e encantam.</div>
-      </div>
-      <div class="srv">
-        <div class="srv-icon">🧶</div>
-        <div class="srv-title">Conteúdo para Artesãs</div>
-        <div class="srv-desc">Tutoriais, padrões e branding para quem quer profissionalizar o artesanato com identidade.</div>
-      </div>
+      <div class="srv"><div class="srv-icon">💻</div><div class="srv-title">Landing Pages</div><div class="srv-desc">Sites e páginas de venda em HTML/CSS com foco em estética, narrativa e conversão.</div></div>
+      <div class="srv"><div class="srv-icon">📖</div><div class="srv-title">Escrita Criativa</div><div class="srv-desc">Livros, narrativas e conteúdo literário com voz autêntica e intenção clara.</div></div>
+      <div class="srv"><div class="srv-icon">✍️</div><div class="srv-title">UX Writing</div><div class="srv-desc">Textos para interfaces, botões e comunicação digital que guiam e encantam.</div></div>
+      <div class="srv"><div class="srv-icon">🌟</div><div class="srv-title">Conteúdo Web</div><div class="srv-desc">Textos para sites, blogs e redes sociais com linguagem clara e personalidade.</div></div>
     </div>
   </div>
 </div>
 
-<!-- SOBRE -->
 <section class="sec" id="sobre">
   <div class="about-wrap">
     <div class="about-text">
       <div class="sec-label">Sobre mim</div>
       <div class="sec-title">Oi, eu sou a Dara 👋</div>
-      <p>Sou escritora, artesã e desenvolvedora front-end, baseada em São Paulo. Vivo entre livros, fios de crochê e linhas de código — e acho que tudo isso tem mais em comum do que parece: são formas de criar algo do zero com as próprias mãos.</p>
-      <p>Publiquei meu primeiro livro, <em>Antes do Sim</em>, pela Amazon e Clube de Autores. Desenvolvo landing pages que contam histórias reais, e cuido da minha loja de artesanato no Enjoei com muito carinho.</p>
+      <p>Sou escritora e desenvolvedora front-end baseada em São Paulo. Vivo entre livros e linhas de código — e acho que os dois têm mais em comum do que parece: são formas de criar algo do zero.</p>
+      <p>Publiquei meu primeiro livro, <em>Antes do Sim</em>, pela Amazon e Clube de Autores. Desenvolvo landing pages que contam histórias reais com muito cuidado no detalhe.</p>
       <p>Se você precisa de alguém que une escrita, design e código com sensibilidade — estou aqui.</p>
-      <a href="#contato" class="btn btn-p">Falar comigo</a>
+      <a href="#contato" class="btn btn-p" style="margin-top:1.2rem">Falar comigo</a>
     </div>
     <div class="stats">
       <div class="stat"><span class="stat-n">1</span><span class="stat-l">livro publicado</span></div>
       <div class="stat"><span class="stat-n">3+</span><span class="stat-l">sites entregues</span></div>
-      <div class="stat"><span class="stat-n">∞</span><span class="stat-l">pontos de crochê</span></div>
       <div class="stat"><span class="stat-n">SP</span><span class="stat-l">São Paulo, BR</span></div>
+      <div class="stat"><span class="stat-n">♡</span><span class="stat-l">projetos com propósito</span></div>
     </div>
   </div>
 </section>
 
-<!-- CONTATO -->
 <section class="sec" id="contato">
   <div class="contact-box">
     <div class="sec-label">Vamos conversar</div>
@@ -371,9 +215,8 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>Feito com 🧶 e <span>código</span> por Dara Toledo · São Paulo, BR</p>
+  <p>Feito com 🌸 e <span>código</span> por Dara Toledo · São Paulo, BR</p>
 </footer>
 
 </body>
