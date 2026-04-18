@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="grad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#b8a9f8"/>
+      <stop offset="100%" stop-color="#8672e0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#9b87f5" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <rect width="400" height="400" fill="#fdf6f0"/>
+  <circle cx="200" cy="195" r="155" fill="none" stroke="#9b87f5" stroke-width="1" stroke-dasharray="4 6" opacity="0.3"/>
+  <circle cx="200" cy="195" r="140" fill="none" stroke="#f4a7c3" stroke-width="2.5" opacity="0.55"/>
+  <circle cx="200" cy="195" r="128" fill="url(#grad)" filter="url(#shadow)"/>
+  <circle cx="162" cy="155" r="52" fill="white" opacity="0.07"/>
+
+  <text x="172" y="225" font-family="Georgia, serif" font-size="145" font-weight="700"
+        font-style="italic" fill="white" opacity="0.95" text-anchor="middle">D</text>
+  <text x="232" y="225" font-family="Georgia, serif" font-size="145" font-weight="700"
+        font-style="italic" fill="#f4a7c3" opacity="0.9" text-anchor="middle">T</text>
+
+  <line x1="128" y1="255" x2="272" y2="255" stroke="white" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="128" cy="255" r="3.5" fill="#f4a7c3" opacity="0.85"/>
+  <circle cx="272" cy="255" r="3.5" fill="#f4a7c3" opacity="0.85"/>
+
+  <line x1="90" y1="316" x2="310" y2="316" stroke="#f4a7c3" stroke-width="1" opacity="0.6"/>
+  <text x="200" y="342" font-family="'Trebuchet MS', sans-serif" font-size="20"
+        font-weight="700" fill="#7c6bd4" text-anchor="middle" letter-spacing="3">DARA TOLEDO</text>
+  <text x="200" y="366" font-family="'Trebuchet MS', sans-serif" font-size="12"
+        fill="#9a6f82" text-anchor="middle" letter-spacing="1.5">escritora  ·  dev front-end</text>
+</svg>
